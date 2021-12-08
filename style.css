@@ -8,3 +8,36 @@ body{
 main{
    flex-grow: 1;
 }
+
+.cream-img{
+    height: 15em;
+    width: 100%;
+    object-fit: cover;
+}
+
+.vess-img{
+    height: 10em;
+    width: 100%;
+    object-fit: cover;
+}
+
+.topp-img{
+    height: 10em;
+    width: 100%;
+    object-fit: cover;
+}
+
+#iScream{
+    display:inline-flex
+}
+#vess{
+    display:inline-flex
+}
+#topp{
+    display:inline-flex
+}
+.product:hover {
+    cursor: pointer;
+    border-radius: 5%;
+    transform: scale(1.05);
+  }
