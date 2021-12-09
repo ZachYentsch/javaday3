@@ -15,7 +15,7 @@ function drawCream() {
     let template = ''
     iceCream.forEach(item => {
         template += `<div class="col-3 p-3 product user-select-none">
-        <div class="bg-primary shadow" onclick="addCart('${item.id}')">
+        <div class="bg-primary shadow" onclick="addCart('${item.id}', 'iceCream')">
         <img class="cream-img"
         src="${item.image}"
         alt="${item.name}">
@@ -34,7 +34,7 @@ function drawVess() {
     let template = ''
     vessels.forEach(item => {
         template += `<div class="col-2 p-3 product user-select-none">
-        <div class="bg-primary shadow">
+        <div class="bg-primary shadow" onclick="addCart('${item.id}', 'vessels')">
         <img class="vess-img"
         src="${item.image}"
         alt="${item.name}">
@@ -70,6 +70,7 @@ drawTop()
 function drawCart() {
     let template = ''
     let total = 0
+    total += cart.vessel.price
     cart.iceCream.forEach((item) => {
         total += item.price
         template = `<div class="row bg-dark text-light ">
@@ -80,11 +81,23 @@ function drawCart() {
     </div>`
 
     })
+    template += `<div class="row bg-dark text-light ">
+        <div
+            class="col-12 p-3 d-inline-flex justify-content-between user-select-none border-primary border-bottome">
+            <h6>${cart.vessel.name}: $${cart.vessel.price}</h6> <h6>$${total}</h6>
+        </div>
+    </div>`
     document.getElementById('cart').innerHTML = template
 }
 
-function addCart(id) {
-    const order = iceCream.find(item => item.id == id)
-    cart.iceCream.push(order)
+function addCart(id, string) {
+    if (string == 'iceCream') {
+        const order = iceCream.find(item => item.id == id)
+        cart.iceCream.push(order)
+    }
+    else if (string == 'vessels') {
+        const order = vessels.find(item => item.id == id)
+        cart.vessel = order
+    }
     drawCart()
 }
